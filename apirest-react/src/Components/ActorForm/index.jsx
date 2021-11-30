@@ -1,8 +1,8 @@
 import React from 'react'
 import {useState, useEffect} from "react";
 
-export const ActorForm = (props) => {
-    console.log(props.action);
+export const ActorForm = ({onAction, action, id}) => {
+    console.log("ACCION: "+action+ " ID: "+id);
     return (
         <>
         <h1 className="text-center">Crear actor</h1>
