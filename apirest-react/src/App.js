@@ -1,7 +1,8 @@
 import './App.css';
+import {useState, useEffect} from "react";
 import { Navbar } from './Components/Navbar'
 import { ActorList } from './Components/ActorList'
-import { agetAllActors } from './services/services'
+import agetAllActors from './services/services'
 
 function App() {
   const [actors, setActors] = useState([]);

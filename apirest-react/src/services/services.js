@@ -5,4 +5,5 @@ const agetAllActors = () => {
     return axios.get(`${API_URL}/actors`).then((response) => response.data);
 }
 
-module.exports = { agetAllActors }
+export default agetAllActors;
+//module.exports = { agetAllActors }
