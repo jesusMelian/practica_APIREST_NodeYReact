@@ -5,32 +5,35 @@ const bootstrap = require('bootstrap')
 export const ActorList = ({actors = []}) => {
     
     return (
-        <div className="table-wrapper">
-            <div className="table_scroll">
-                <table className="table-content">
+        <>
+        <h1 className="text-center">Listado de Actores</h1>
+            <table className="table table-striped">
+                <thead className="thead-dark">
                     <tr>
                         <th>#</th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
-                        <th colpan="2">Acciones</th>
+                        <th>Acciones</th>
                     </tr>
-                    {
-                        actors.map((actor) => {
-                            return(
-                                
+                </thead>
+                        {
+                            actors.map((actor) => {
+                                return(
                                     <tr>
-                                        <td key={actor.actor_id}>{actor.actor_id}</td>
+                                        <td scope="row" key={actor.actor_id}>{actor.actor_id}</td>
                                         <td>{actor.first_name}</td>
                                         <td>{actor.last_name}</td>
-                                        <td><button id={actor.actor_id} >EDITAR</button></td>
-                                        <td><button id={actor.actor_id} >ELIMINAR</button></td>
-                                    </tr>
-                                
+                                        <td>
+                                            <button type="button" className="btn btn-warning m-2" id={actor.actor_id}>EDITAR</button>
+                                            <button type="button" className="btn btn-danger" id={actor.actor_id} >BORRAR</button>
+                                        </td>
+                                    </tr>                    
                                 );
-                        })
-                    }
-                </table>
-            </div>
-        </div>
+                            })
+                        }
+
+            </table>
+        </>
     )
 }
+
