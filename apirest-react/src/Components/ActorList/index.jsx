@@ -1,15 +1,17 @@
 import React from 'react'
-const bootstrap = require('bootstrap')
+import { ActorForm } from '../ActorForm'
+import PropTypes from 'prop-types'
+import {useState, useEffect} from "react";
 
 //Por defecto el array de actores esta vacio
-export const ActorList = ({actors = []}) => {
+export const ActorList = ({actors = [], onDelete}) => {
     
     return (
         <>
         <h1 className="text-center">Listado de Actores</h1>
-            <table className="table table-striped">
-                <thead className="thead-dark">
-                    <tr>
+            <table className="table">
+                <thead>
+                    <tr className="bg-dark text-light">
                         <th>#</th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
@@ -24,8 +26,8 @@ export const ActorList = ({actors = []}) => {
                                         <td>{actor.first_name}</td>
                                         <td>{actor.last_name}</td>
                                         <td>
-                                            <button type="button" className="btn btn-warning m-2" id={actor.actor_id}>EDITAR</button>
-                                            <button type="button" className="btn btn-danger" id={actor.actor_id} >BORRAR</button>
+                                            <button type="button" className="btn m-2" id={actor.actor_id} >EDITAR</button>
+                                            <button type="button" className="btn " id={actor.actor_id} onClick={() => onDelete(actor.actor_id)}>BORRAR</button>
                                         </td>
                                     </tr>                    
                                 );

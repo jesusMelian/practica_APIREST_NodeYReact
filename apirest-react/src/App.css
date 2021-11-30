@@ -53,3 +53,8 @@
   padding: 2rem;
   overflow:scroll;
 }
+
+.form-padding{
+  padding: 2rem;
+  height: auto;
+}
