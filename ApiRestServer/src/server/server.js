@@ -14,7 +14,7 @@ app.use(cors());
 let server;
 const runServer = () => {
     // Initialize the server
-    server = app.listen(8001, () => {
+    server = app.listen(8002, () => {
         console.log(
             `Server started at port http://localhost:${server.address().port}`
             );

@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:8001/api/v1';
+const API_URL = 'http://localhost:8002/api/v1';
 
 const agetAllActors = () => {
     return axios.get(`${API_URL}/actors`).then((response) => response.data);
@@ -16,7 +16,11 @@ const aGetActorForId = (id) => {
 const aPutActor = (id, actor) => {
     return axios.put(`${API_URL}/actor/${id}`, actor).then((response) => response.data);
 }
-export default {agetAllActors , aDelActor, aGetActorForId, aPutActor};
+
+const aInsertActor = (actor) => {
+    return axios.post(`${API_URL}/actor/`, actor).then((response) => response.data);
+}
+export default {agetAllActors , aDelActor, aGetActorForId, aPutActor, aInsertActor};
 //export default agetAllActors;
 //export default aDelActor;
 //module.exports = { agetAllActors , aDelActor}

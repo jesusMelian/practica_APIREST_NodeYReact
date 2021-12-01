@@ -50,10 +50,14 @@ function App() {
     setBool(bool);
   }
 
+  //INSERTAR ACTOR
+  const handleInsert = (actor) => {
+    bd.aInsertActor(actor);
+  }
+
   //EDITAR USER
   const handleEdit = (actor) => {
-
-  console.log('handleEdit myactor',actor);
+    console.log('handleEdit myactor',actor);
     bd.aPutActor(actor.actor_id, actor).then((res) => {
       console.log(res.data);
     })
@@ -61,8 +65,6 @@ function App() {
     handleAction(0);
     //RECARGO LA PAGINA
     handleBool(true);
-
-    
   }
   //ESTO SIRVE PARA QUE SE CARGE LA PRIMERA VEZ
   useEffect(() => {
@@ -92,7 +94,7 @@ function App() {
           <ActorList actors={actors} onDelete={handleDelete} onAction={handleAction} />
         </div>
         <div className="flex-sm-row col-sm-3 p-2 ">
-          <ActorForm action={action} id={id} actors={actors} onEdit={handleEdit} />
+          <ActorForm action={action} id={id} actors={actors} onEdit={handleEdit} onInsert={handleInsert}/>
         </div>
       </div>
     </>

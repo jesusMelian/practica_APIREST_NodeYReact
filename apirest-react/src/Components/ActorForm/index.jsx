@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState} from "react";
 
-export const ActorForm = ({ action, id, actors, onEdit }) => {
+export const ActorForm = ({ action, id, actors, onEdit, onInsert}) => {
       //FILTRAR POR ID
     const filtrarId = (id) => {
         const result = actors.filter(actors => actors.actor_id === id);
@@ -10,8 +10,8 @@ export const ActorForm = ({ action, id, actors, onEdit }) => {
     }
     console.log("Actor0 :", filtrarId(id));
     const actor = filtrarId(id);
-    const [first_name, setFirstName] = useState(null);
-    const [last_name, setLastName] = useState(null);
+    const [first_name, setFirstName] = useState();
+    const [last_name, setLastName] = useState();
 
     //ENVIO DEL FORMULARIO
     const handleSubmit = (e) => {
@@ -22,21 +22,26 @@ export const ActorForm = ({ action, id, actors, onEdit }) => {
         };
         console.log('handleSubmit myActor',myActor);
         e.preventDefault();
-        onEdit(myActor)
+        if(action ===1){
+            onEdit(myActor)
+        }else{
+            onInsert(myActor)
+        }
+        
     }
     if(action === 0){
         return (
             <>
             <h1 className="text-center">Crear actor</h1>
-                <form className="form-padding border border-dark ">
+                <form className="form-padding border border-dark" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label for="first_name">Nombre</label>
-                        <input type="text" className="form-control" id="first_name" />
+                        <input type="text" className="form-control" id="first_name" onChange={(e) => setFirstName(e.target.value)}/>
                     </div>
 
                     <div className="form-group">
                         <label for="last_name">Apellidos</label>
-                        <input type="text" className="form-control" id="last_name" />
+                        <input type="text" className="form-control" id="last_name" onChange={(e) => setLastName(e.target.value)}/>
                     </div>
                     <button type="submit" className="btn btn-primary">ENVIAR</button>
                 </form>
