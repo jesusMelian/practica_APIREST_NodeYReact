@@ -1,7 +1,5 @@
 import React from 'react'
-import { ActorForm } from '../ActorForm'
-import PropTypes from 'prop-types'
-import {useState, useEffect} from "react";
+
 
 //Por defecto el array de actores esta vacio
 export const ActorList = ({actors = [], onDelete, onAction}) => {
@@ -22,11 +20,11 @@ export const ActorList = ({actors = [], onDelete, onAction}) => {
                             actors.map((actor) => {
                                 return(
                                     <tr>
-                                        <td scope="row" key={actor.actor_id}>{actor.actor_id}</td>
+                                        <td key={actor.actor_id}>{actor.actor_id}</td>
                                         <td>{actor.first_name}</td>
                                         <td>{actor.last_name}</td>
                                         <td>
-                                            <button type="button" className="btn m-2" id={actor.actor_id} onClick={() => {onAction(1,actor.actor_id)} }>EDITAR</button>
+                                            <button type="button" className="btn m-2" id={actor.actor_id} onClick={() => {onAction(1,actor.actor_id)}}>EDITAR</button>
                                             <button type="button" className="btn " id={actor.actor_id} onClick={() => onDelete(actor.actor_id)}>BORRAR</button>
                                         </td>
                                     </tr>                    

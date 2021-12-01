@@ -14,6 +14,7 @@ function App() {
   const [action, setAction] = useState(0);
   const [id, setId] = useState();
   const [bool, setBool] = useState(true);
+  //const [oneActor, setOneActor] = useState(null);
   //Elimina los actores(esta funcion se pasa a el compponente actorList y será llamado al 
   //hacer click en el boton de eliminar)
   const handleDelete = (id) => {
@@ -48,11 +49,21 @@ function App() {
   const handleBool = (bool) => {
     setBool(bool);
   }
-  //FILTRAR POR ID
-  const filtrarId = (id) => {
-    return actors.filter(actors => actors.actor_id === id);
-  }
 
+  //EDITAR USER
+  const handleEdit = (actor) => {
+
+  console.log('handleEdit myactor',actor);
+    bd.aPutActor(actor.actor_id, actor).then((res) => {
+      console.log(res.data);
+    })
+    //cambio la accion a crear
+    handleAction(0);
+    //RECARGO LA PAGINA
+    handleBool(true);
+
+    
+  }
   //ESTO SIRVE PARA QUE SE CARGE LA PRIMERA VEZ
   useEffect(() => {
     bd.agetAllActors().then((res) => {
@@ -81,7 +92,7 @@ function App() {
           <ActorList actors={actors} onDelete={handleDelete} onAction={handleAction} />
         </div>
         <div className="flex-sm-row col-sm-3 p-2 ">
-          <ActorForm  onAction={handleAction} action={action} id={id} actor={filtrarId(id)}/>
+          <ActorForm action={action} id={id} actors={actors} onEdit={handleEdit} />
         </div>
       </div>
     </>

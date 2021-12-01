@@ -12,7 +12,11 @@ const aDelActor = (id) => {
 const aGetActorForId = (id) => {
     return axios.get(`${API_URL}/actor/${id}`).then((response) => response.data);
 }
-export default {agetAllActors , aDelActor, aGetActorForId};
+
+const aPutActor = (id, actor) => {
+    return axios.put(`${API_URL}/actor/${id}`, actor).then((response) => response.data);
+}
+export default {agetAllActors , aDelActor, aGetActorForId, aPutActor};
 //export default agetAllActors;
 //export default aDelActor;
 //module.exports = { agetAllActors , aDelActor}
