@@ -13,6 +13,7 @@ function App() {
   //estara a 0 si deseo crear, a 1 si desea editar
   const [action, setAction] = useState(0);
   const [id, setId] = useState();
+  const [bool, setBool] = useState(true);
   //Elimina los actores(esta funcion se pasa a el compponente actorList y será llamado al 
   //hacer click en el boton de eliminar)
   const handleDelete = (id) => {
@@ -31,10 +32,8 @@ function App() {
         setActors(res.data);
       })
 
-      //RECARGO LA WEB
-      //this.props.history.push(this.props.match.url);
-      //window.location.reload(true);
-      //location.reload();
+      //RECARGO LA PAGINA
+      handleBool(true);
     }else{
       //NO HAGO NADA
     }
@@ -45,6 +44,10 @@ function App() {
     setId(id);
   }
 
+  //MODIFICAR LA VARIABLE QUE RECARGA LA PAGINA AL BORRAR UN USUARIO, AL AGREGAR UN USUARIO Y AL EDITARLO
+  const handleBool = (bool) => {
+    setBool(bool);
+  }
   //FILTRAR POR ID
   const filtrarId = (id) => {
     return actors.filter(actors => actors.actor_id === id);
@@ -56,9 +59,11 @@ function App() {
       console.log(res.data);
       //meto los actores en el array de actores
       setActors(res.data);
+      //pongo la variable a false para que no se recargue
+      setBool(false);
     })
-    //le paso el array de actors para que se recargue todo el rato
-  }, [])
+    //le paso una variable, si esta a true, recarga, y si no no recarga
+  }, [bool])
 
 
   //AL ACTORLIST le pasamos la funcion para borrar y la funcion para cambiar de acciones
@@ -67,12 +72,13 @@ function App() {
   //AL ACTORFORM le paso la funcion onAction, ya que me hará falta cambiar la opción caa vez que termine de editar el registro
   //Cuando termine de editar el regsitro pondre la action a 0 para que sea crear un nuevo registro
   //tambien le paso la action actual y el id del actor que quiero editar
+  //tambien le paso el actor actual, que ya esta filtrado por la funcion filtrarId
   return (
     <>
       <Navbar />
       <div className="d-flex">
         <div className="scrolling" >
-          <ActorList actors={actors} onDelete={handleDelete} onAction={handleAction}/>
+          <ActorList actors={actors} onDelete={handleDelete} onAction={handleAction} />
         </div>
         <div className="flex-sm-row col-sm-3 p-2 ">
           <ActorForm  onAction={handleAction} action={action} id={id} actor={filtrarId(id)}/>
