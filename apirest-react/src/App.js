@@ -45,6 +45,10 @@ function App() {
     setId(id);
   }
 
+  //FILTRAR POR ID
+  const filtrarId = (id) => {
+    return actors.filter(actors => actors.actor_id === id);
+  }
 
   //ESTO SIRVE PARA QUE SE CARGE LA PRIMERA VEZ
   useEffect(() => {
@@ -53,6 +57,7 @@ function App() {
       //meto los actores en el array de actores
       setActors(res.data);
     })
+    //le paso el array de actors para que se recargue todo el rato
   }, [])
 
 
@@ -70,7 +75,7 @@ function App() {
           <ActorList actors={actors} onDelete={handleDelete} onAction={handleAction}/>
         </div>
         <div className="flex-sm-row col-sm-3 p-2 ">
-          <ActorForm  onAction={handleAction} action={action} id={id}/>
+          <ActorForm  onAction={handleAction} action={action} id={id} actor={filtrarId(id)}/>
         </div>
       </div>
     </>
