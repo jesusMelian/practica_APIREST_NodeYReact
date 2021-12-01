@@ -8,5 +8,12 @@ const agetAllActors = () => {
 const aDelActor = (id) => {
     return axios.delete(`${API_URL}/actor/${id}`).then((response) => response.data);
 }
-export default agetAllActors;
+
+const aGetActorForId = (id) => {
+    return axios.get(`${API_URL}/actor/${id}`).then((response) => response.data);
+}
+export default {agetAllActors , aDelActor, aGetActorForId};
+//export default agetAllActors;
+//export default aDelActor;
 //module.exports = { agetAllActors , aDelActor}
+//module.exports = { agetAllActors, aDelActor }

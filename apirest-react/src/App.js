@@ -3,7 +3,9 @@ import {useState, useEffect} from "react";
 import { Navbar } from './Components/Navbar'
 import { ActorList } from './Components/ActorList'
 import { ActorForm } from './Components/ActorForm'
-import agetAllActors from './services/services'
+//import agetAllActors from './services/services'
+//import aDelActor from './services/services'
+import bd from './services/services'
 //import {agetAllActors, aDelActor } from './services/services'
 
 function App() {
@@ -18,6 +20,21 @@ function App() {
     const confirm = window.confirm("¿Está seguro que desea eliminar el registro con id: "+id+"?");
     if(confirm){
       //ELIMIMINO ACTOR
+      bd.aDelActor(id).then((res) => {
+        console.log(res.data);
+      })
+
+      //RECARGO LOS USUARIOS
+      bd.agetAllActors().then((res) => {
+        console.log(res.data);
+        //meto los actores en el array de actores
+        setActors(res.data);
+      })
+
+      //RECARGO LA WEB
+      //this.props.history.push(this.props.match.url);
+      //window.location.reload(true);
+      //location.reload();
     }else{
       //NO HAGO NADA
     }
@@ -31,7 +48,7 @@ function App() {
 
   //ESTO SIRVE PARA QUE SE CARGE LA PRIMERA VEZ
   useEffect(() => {
-    agetAllActors().then((res) => {
+    bd.agetAllActors().then((res) => {
       console.log(res.data);
       //meto los actores en el array de actores
       setActors(res.data);
