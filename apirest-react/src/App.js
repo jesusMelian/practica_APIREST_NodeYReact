@@ -52,6 +52,7 @@ function App() {
 
   //INSERTAR ACTOR
   const handleInsert = (actor) => {
+    console.log("onINSERT: ", actor);
     bd.aInsertActor(actor);
   }
 
@@ -88,13 +89,13 @@ function App() {
   //tambien le paso el actor actual, que ya esta filtrado por la funcion filtrarId
   return (
     <>
-      <Navbar />
+      <Navbar title="Actors App"/>
       <div className="d-flex">
         <div className="scrolling" >
           <ActorList actors={actors} onDelete={handleDelete} onAction={handleAction} />
         </div>
         <div className="flex-sm-row col-sm-3 p-2 ">
-          <ActorForm action={action} id={id} actors={actors} onEdit={handleEdit} onInsert={handleInsert}/>
+          <ActorForm onInsert={handleInsert} onBool={handleBool}/>
         </div>
       </div>
     </>

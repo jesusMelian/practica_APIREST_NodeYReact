@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Navbar = () => {
+export const Navbar = ({title}) => {
     return (
         <div>
-            <h1 className="title">Actors App</h1>
+            <h1 className="title">{title}</h1>
         </div>
     )
 }
