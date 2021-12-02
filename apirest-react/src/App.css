@@ -19,3 +19,13 @@
   padding: 2rem;
   height: auto;
 }
+
+/* //cambie el estilo manualmente, por que por algún motivo no me coge el estilo de bootstrap */
+.btn-danger{
+  color: black;
+  background-color: red;
+}
+
+.btn-warning{
+  background-color: yellow,
+}

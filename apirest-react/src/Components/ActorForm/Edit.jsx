@@ -46,14 +46,15 @@ export const Edit = ({ actors, onEdit, id}) => {
             <h1 className="text-center">Editar actor</h1>
                 <form className="form-padding border border-dark" onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label for="first_name">Nombre</label>
+                        <label htmlFor="first_name">Nombre</label>
                         <input type="text" className="form-control" id="first_name" name="first_name" onChange={handleInputChange} value={actor.first_name}/>
                     </div>
 
                     <div className="form-group">
-                        <label for="last_name">Apellidos</label>
+                        <label htmlFor="last_name">Apellidos</label>
                         <input type="text" className="form-control" id="last_name" name="last_name" onChange={handleInputChange} value={actor.last_name}/>
                     </div>
+                    <br />
                     <button type="submit" className="btn btn-primary">EDITAR</button>
                 </form>
             </>

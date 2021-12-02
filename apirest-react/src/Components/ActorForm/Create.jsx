@@ -45,6 +45,7 @@ export const Create = ({onInsert, onBool, id}) => {
                         <label for="last_name">Apellidos</label>
                         <input type="text" className="form-control" id="last_name" name="last_name" onChange={handleInputChange} value={actor.last_name}/>
                     </div>
+                    <br />
                     <button type="submit" className="btn btn-primary">CREAR</button>
                 </form>
             </>
