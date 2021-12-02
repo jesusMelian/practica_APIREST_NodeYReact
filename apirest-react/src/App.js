@@ -2,7 +2,8 @@ import './App.css';
 import {useState, useEffect} from "react";
 import { Navbar } from './Components/Navbar'
 import { ActorList } from './Components/ActorList'
-import { ActorForm } from './Components/ActorForm'
+import { Create } from './Components/ActorForm/Create'
+import { Edit } from './Components/ActorForm/Edit';
 //import agetAllActors from './services/services'
 //import aDelActor from './services/services'
 import bd from './services/services'
@@ -54,6 +55,7 @@ function App() {
   const handleInsert = (actor) => {
     console.log("onINSERT: ", actor);
     bd.aInsertActor(actor);
+    setBool(true);
   }
 
   //EDITAR USER
@@ -95,7 +97,10 @@ function App() {
           <ActorList actors={actors} onDelete={handleDelete} onAction={handleAction} />
         </div>
         <div className="flex-sm-row col-sm-3 p-2 ">
-          <ActorForm onInsert={handleInsert} onBool={handleBool}/>
+          { action===0 
+          ? <Create onInsert={handleInsert} onBool={handleBool}/> 
+          : <Edit actors={actors} onEdit={handleEdit} id={id}/>}
+          
         </div>
       </div>
     </>

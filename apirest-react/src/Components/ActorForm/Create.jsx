@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState} from "react";
 
-export const ActorForm = ({onInsert, onBool, id}) => {
+export const Create = ({onInsert, onBool, id}) => {
     const [actor, setActor] = useState({
         first_name: '',
         last_name: ''
@@ -25,8 +25,6 @@ export const ActorForm = ({onInsert, onBool, id}) => {
         e.preventDefault();
         //Inserto el actor
         onInsert(myActor);
-        //Recargo la pagina
-        onBool(true);
 
         //RESETEAMOS EL VALOR DE ACTOR PARA BORRAR LOS INPUTS
         setActor({
