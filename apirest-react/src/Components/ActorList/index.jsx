@@ -16,6 +16,7 @@ export const ActorList = ({actors = [], onDelete, onAction}) => {
                         <th>Acciones</th>
                     </tr>
                 </thead>
+                    <tbody>
                         {
                             actors.map((actor) => {
                                 return(
@@ -24,14 +25,14 @@ export const ActorList = ({actors = [], onDelete, onAction}) => {
                                         <td>{actor.first_name}</td>
                                         <td>{actor.last_name}</td>
                                         <td>
-                                            <button type="button" className="btn btn-warning" id={actor.actor_id} onClick={() => {onAction(1,actor.actor_id)}}>EDITAR</button>
+                                            <button type="button" className="btn btn-warning m-2" id={actor.actor_id} onClick={() => {onAction(1,actor.actor_id)}}>EDITAR</button>
                                             <button type="button" className="btn btn-danger" id={actor.actor_id} onClick={() => onDelete(actor.actor_id)}>BORRAR</button>
                                         </td>
                                     </tr>                    
                                 );
                             })
                         }
-
+                    </tbody>
             </table>
         </>
     )
