@@ -1,19 +1,18 @@
 import React from 'react'
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
-export const Edit = ({ actors, onEdit, id}) => {
-    const filtrarId = (id) => {
-        const result = actors.filter(actors => actors.actor_id === id);
-        console.log('Result:', result);
-        return result[0];
-    }
-    const myActor = filtrarId(id);
-    const [actor, setActor] = useState({
-        actor_id: myActor.actor_id,
-        first_name: myActor.first_name,
-        last_name: myActor.last_name
-    });
-    
+
+const actorInitilized = {
+    actor_id: null,
+    first_name: '',
+    last_name: ''
+}
+export const Edit = ({onEdit, myActor}) => {
+    const [actor, setActor] = useState(actorInitilized);
+    useEffect(() => {
+        setActor(myActor);
+        //CADA VEZ QUE YO CAMBIE MY ACTOR SE ACTUALIZA EL FORMULARIO
+    }, [myActor]);
 
     const handleInputChange = (event) => {
         console.log(event.target.value);
@@ -21,16 +20,10 @@ export const Edit = ({ actors, onEdit, id}) => {
             ...actor,
             [event.target.name]: event.target.value
         })
+        
         console.log("mi actor: ",actor);
     }
     const handleSubmit = (e) => {
-        const myActor = {
-            actor_id: id,
-            first_name: actor.first_name,
-            last_name: actor.last_name
-        };
-        
-
         e.preventDefault();
 
         onEdit(actor);

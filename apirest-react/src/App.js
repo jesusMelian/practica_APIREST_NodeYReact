@@ -44,6 +44,7 @@ function App() {
   const handleAction = (num, id) => {
     setAction(num);
     setId(id);
+    setBool(true);
   }
 
   //MODIFICAR LA VARIABLE QUE RECARGA LA PAGINA AL BORRAR UN USUARIO, AL AGREGAR UN USUARIO Y AL EDITARLO
@@ -68,6 +69,27 @@ function App() {
     handleAction(0);
     //RECARGO LA PAGINA
     handleBool(true);
+  }
+
+  const handleFilterbyId = (id) => {
+    const filtrarId = (id) => {
+        const result = actors.filter(actors => actors.actor_id === id);
+        console.log('Result:', result);
+        return result[0];
+    }
+    const myActor = filtrarId(id);
+    return myActor;
+  }
+
+  const handleActions = () => {
+    console.log("ENTRO EN HANDLE ACTIONS");
+    if (action===0) {
+      return (<Create onInsert={handleInsert} onBool={handleBool}/>)
+    }else{
+      const myActor = handleFilterbyId(id);
+      //LE PASO EL ACTOR YA FILTRADO POR EL ID
+      return (<Edit onEdit={handleEdit} myActor={myActor}/>)
+    }
   }
   //ESTO SIRVE PARA QUE SE CARGE LA PRIMERA VEZ
   useEffect(() => {
@@ -97,9 +119,7 @@ function App() {
           <ActorList actors={actors} onDelete={handleDelete} onAction={handleAction} />
         </div>
         <div className="flex-sm-row col-sm-3 p-2 ">
-          { action===0 
-          ? <Create onInsert={handleInsert} onBool={handleBool}/> 
-          : <Edit actors={actors} onEdit={handleEdit} id={id}/>}
+          {handleActions()}
           
         </div>
       </div>
